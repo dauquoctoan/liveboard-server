@@ -54,6 +54,18 @@ services:
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
+
+  page-views:
+    build:
+      context: .
+      dockerfile: ./apps/page-views/Dockerfile
+      target: development
+    command: npm run start:dev page-views
+    ports:
+      - '3005:3005'
+    env_file:
+      - ./apps/page-views/.env
+
   rabbitmq:
     image: rabbitmq
     ports:

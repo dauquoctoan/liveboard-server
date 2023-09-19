@@ -12,7 +12,6 @@ import { AUTH_SERVICE } from './services';
 @Injectable()
 export class JwtAuthGuard implements CanActivate {
   constructor(@Inject(AUTH_SERVICE) private authClient: ClientProxy) {}
-
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {

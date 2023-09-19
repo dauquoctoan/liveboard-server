@@ -1,4 +1,4 @@
-import { Controller, Post, Res, UseGuards } from '@nestjs/common';
+import { Controller, Post, Res, UseGuards,Get,Render } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
 import { Response } from 'express';
 import { AuthService } from './auth.service';
@@ -10,6 +10,12 @@ import { User } from './users/schemas/user.schema';
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
+
+  @Get()
+  @Render('index')
+  root() {
+    return { message: 'View page!' };
+  }
 
   @UseGuards(LocalAuthGuard)
   @Post('login')

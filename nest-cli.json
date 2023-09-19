@@ -43,6 +43,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/common/tsconfig.lib.json"
       }
+    },
+    "page-views": {
+      "type": "application",
+      "root": "apps/page-views",
+      "entryFile": "main",
+      "sourceRoot": "apps/page-views/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/page-views/tsconfig.app.json"
+      }
     }
   }
 }
