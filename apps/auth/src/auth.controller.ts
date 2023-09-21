@@ -7,14 +7,15 @@ import JwtAuthGuard from './guards/jwt-auth.guard';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { User } from './users/schemas/user.schema';
 
+
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Get()
-  @Render('index')
-  root() {
-    return { message: 'View page!' };
+ 
+  @Get('/test')
+  getHello(@Res() res: Response){
+    return res.render('index', { layout: 'main', message: 'Hello World' });
   }
 
   @UseGuards(LocalAuthGuard)

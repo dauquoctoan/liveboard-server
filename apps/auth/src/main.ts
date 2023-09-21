@@ -6,12 +6,16 @@ import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
+import * as hbs from 'express-handlebars';
+
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AuthModule);
-
-  app.useStaticAssets(join(__dirname,  '..', '..', '..', 'public'));
-  app.setBaseViewsDir(join(__dirname, '..', '..', '..', 'views'));
+  
+  /* add view engine */
+  app.useStaticAssets(join(__dirname, '../../..', 'public'))
+  app.setBaseViewsDir(join(__dirname, '../../..', 'views'));
+  app.engine('hbs', hbs({ extname: 'hbs',defaultLayout: 'index', layoutsDir: join(__dirname, '../../..', 'views/layouts')}));
   app.setViewEngine('hbs');
 
   const rmqService = app.get<RmqService>(RmqService);
